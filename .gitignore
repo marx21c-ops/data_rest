@@ -1,1 +1,39 @@
-.vercel
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production build output
+dist/
+build/
+
+# Local env files (보안 키 격리)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel metadata
+.vercel/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Editor configurations
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS metadata
+.DS_Store

@@ -164,10 +164,10 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [showConfig, setShowConfig] = useState(false);
   
-  // API Configurations saved in localStorage
+  // API Configurations saved in localStorage with fallback to Vite env variables
   const [config, setConfig] = useState<SearchConfig>({
-    geminiApiKey: localStorage.getItem('gemini_api_key') || '',
-    kakaoAppKey: localStorage.getItem('kakao_app_key') || ''
+    geminiApiKey: localStorage.getItem('gemini_api_key') || (import.meta.env.VITE_GEMINI_API_KEY as string) || '',
+    kakaoAppKey: localStorage.getItem('kakao_app_key') || (import.meta.env.VITE_KAKAO_APP_KEY as string) || ''
   });
 
   // Chat interface states
