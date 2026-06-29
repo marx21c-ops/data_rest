@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
-  Search, MapPin, Database, Sparkles, Key, FileJson, 
-  Map as MapIcon, Layers, ChevronRight, Settings, Info, Star, MessageSquare, Send, Check
+  Search, MapPin, Database, Sparkles, FileJson, 
+  ChevronRight, Settings, Info, MessageSquare, Send, Check
 } from 'lucide-react';
 import { HotPlace, SearchConfig } from './types';
 import KakaoMap from './components/KakaoMap';
