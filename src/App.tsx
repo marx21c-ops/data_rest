@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { 
   Search, MapPin, Database, Sparkles, FileJson, 
-  ChevronRight, Settings, Info, MessageSquare, Send, Check
+  Info, MessageSquare, Send, Check
 } from 'lucide-react';
 import { HotPlace, SearchConfig } from './types';
 import KakaoMap from './components/KakaoMap';
@@ -162,7 +162,6 @@ export default function App() {
   const [selectedPlace, setSelectedPlace] = useState<HotPlace | null>(MOCK_DATA['문래'][0]);
   const [selectedSpotIds, setSelectedSpotIds] = useState<Set<string>>(new Set([MOCK_DATA['문래'][0].id]));
   const [isLoading, setIsLoading] = useState(false);
-  const [showConfig, setShowConfig] = useState(false);
   
   // API Configurations saved in localStorage with fallback to Vite env variables
   const [config, setConfig] = useState<SearchConfig>({
@@ -177,13 +176,7 @@ export default function App() {
   const [chatInput, setChatInput] = useState('');
   const [isChatLoading, setIsChatLoading] = useState(false);
 
-  // Sync keys to local storage
-  const handleSaveConfig = (newConfig: SearchConfig) => {
-    setConfig(newConfig);
-    localStorage.setItem('gemini_api_key', newConfig.geminiApiKey);
-    localStorage.setItem('kakao_app_key', newConfig.kakaoAppKey);
-    setShowConfig(false);
-  };
+
 
   // Dynamic Kakao Map search center state
   const [searchCenterAddress, setSearchCenterAddress] = useState(MOCK_DATA['문래'][0].address);
@@ -494,47 +487,7 @@ Provide a concise, friendly response in Korean analyzing the data above. Recomme
           </div>
         </div>
 
-        {/* API Settings Section */}
-        <div className="mb-5">
-          <button 
-            onClick={() => setShowConfig(!showConfig)}
-            className="flex items-center justify-between w-full bg-zinc-800 hover:bg-zinc-700 bg-opacity-50 text-xs px-3 py-2 rounded-lg text-zinc-300 transition-colors"
-          >
-            <span className="flex items-center gap-1.5"><Settings className="w-3.5 h-3.5" /> API 및 환경 키 설정</span>
-            <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${showConfig ? 'rotate-90' : ''}`} />
-          </button>
 
-          {showConfig && (
-            <div className="mt-3 p-3 bg-zinc-950 border border-zinc-800 rounded-lg flex flex-col gap-3">
-              <div>
-                <label className="text-[10px] text-zinc-500 font-bold block mb-1">GEMINI API KEY</label>
-                <input 
-                  type="password"
-                  placeholder="AI 실시간 웹 검색 활성화"
-                  value={config.geminiApiKey}
-                  onChange={(e) => setConfig({ ...config, geminiApiKey: e.target.value })}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-indigo-500"
-                />
-              </div>
-              <div>
-                <label className="text-[10px] text-zinc-500 font-bold block mb-1">KAKAO JAVASCRIPT APP KEY</label>
-                <input 
-                  type="text"
-                  placeholder="지도 뷰어 렌더링 활성화"
-                  value={config.kakaoAppKey}
-                  onChange={(e) => setConfig({ ...config, kakaoAppKey: e.target.value })}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:border-indigo-500"
-                />
-              </div>
-              <button 
-                onClick={() => handleSaveConfig(config)}
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white rounded text-xs py-1.5 font-semibold transition-colors"
-              >
-                설정 키 저장
-              </button>
-            </div>
-          )}
-        </div>
 
         {/* Stats and Selected Count */}
         <div className="flex-1 overflow-y-auto mb-5">
