@@ -152,7 +152,7 @@ export default function KakaoMap({ places, selectedPlace, onSelectPlace, kakaoAp
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', backgroundColor: '#18181b', color: '#a1a1aa', border: '1px dashed #3f3f46', borderRadius: '12px', padding: '24px', textAlign: 'center' }}>
         <div>
           <p style={{ fontSize: '18px', fontWeight: '600', color: '#f4f4f5', marginBottom: '8px' }}>카카오 지도 API 키가 필요합니다</p>
-          <p style={{ fontSize: '14px', maxWidth: '320px', lineHeight: '20px' }}>좌측 설정 패널에서 Kakao JavaScript App Key를 입력하시면 지도가 활성화됩니다.</p>
+          <p style={{ fontSize: '14px', maxWidth: '320px', lineHeight: '20px' }}>프로젝트의 .env.local 파일 또는 Vercel 환경 변수에 VITE_KAKAO_APP_KEY를 등록해 주세요.</p>
         </div>
       </div>
     );
