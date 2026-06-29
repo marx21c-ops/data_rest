@@ -2,6 +2,7 @@ export interface HotPlace {
   id: string;
   name: string;
   category: string;
+  categoryGroup: 'cafe' | 'bakery' | 'restaurant';
   address: string;
   latitude: number;
   longitude: number;
